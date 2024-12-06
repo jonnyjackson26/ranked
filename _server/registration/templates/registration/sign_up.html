@@ -1,32 +1,29 @@
-{% extends "registration/base.html"%}
+{% extends "registration/base.html" %}
 
 {% block content %}
-<form action="/registration/sign_up/" method="post">
-  {% csrf_token %}
-  <div>
-    <label>
-      First Name
-      <input type="text" name="first_name">
-    </label>
-  </div>
-  <div>
-    <label>
-      Last Name
-      <input type="text" name="last_name">
-    </label>
-  </div>
-  <div>
-    <label>
-      Email
-      <input type="email" name="email">
-    </label>
-  </div>
-  <div>
-    <label>
-      Password
-      <input type="password" name="password">
-    </label>
-  </div>
-  <button>Create Account</button>
-</form>
+<div class="form-container">
+  <h2>Create an Account</h2>
+  <p>Surely you're the best at SOMETHING in the world. Want to see what it is? Create an account, enter some personal information, and see how you rank in many different qualities.</p>
+  <form action="/registration/sign_up/" method="post">
+    {% csrf_token %}
+    <div class="form-group">
+      <label>First Name</label>
+      <input type="text" name="first_name" placeholder="Enter your first name" required>
+    </div>
+    <div class="form-group">
+      <label>Last Name</label>
+      <input type="text" name="last_name" placeholder="Enter your last name" required>
+    </div>
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" name="email" placeholder="Enter your email" required>
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" name="password" placeholder="Enter a strong password" required>
+    </div>
+    <button type="submit" class="btn">Create Account</button>
+  </form>
+  <p>Already have an account? <a href="/registration/sign_in/">Sign in</a></p>
+</div>
 {% endblock %}

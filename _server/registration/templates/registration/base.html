@@ -4,14 +4,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <style>
-    /* style your login pages here because the normal
-      static asset flow is different now */
-  </style>
+  <title>Ranked | Find Out What Makes You Unique</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-  {% block content %}
-  {% endblock %}
+  <div class="container">
+    <header>
+      <h1>Ranked</h1>
+      <p>Discover what makes you stand out.</p>
+    </header>
+    <main>
+      {% block content %}
+      {% endblock %}
+    </main>
+    <footer>
+      <p>&copy; 2024 Ranked. All Rights Reserved.</p>
+    </footer>
+  </div>
 </body>
 </html>
