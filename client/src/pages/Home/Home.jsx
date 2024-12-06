@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import './Home.css';
 import Navbar from '../../components/Navbar/Navbar';
+import PhysicalAttributesPage from '../PhysicalAttributesPage/PhysicalAttributesPage';
 
 function Home() {
   const [user, setUser] = useState('');
@@ -31,6 +32,7 @@ function Home() {
       <p>Welcome, {user.first_name}!</p>
       <Link to="/profile">Profile</Link>
 
+      <PhysicalAttributesPage />
 
     </>
   );
