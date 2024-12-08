@@ -35,17 +35,17 @@ function PhysicalAttributesPage() {
     const dataToSend = {
       height: totalHeightInches,
       weight: formData.weight,
-      dash: formData.dash,
-      benchPress: formData.benchPress,
-      deadlift: formData.deadlift,
-      squat: formData.squat,
+      fastest_40_yard_dash: formData.dash,
+      bench_press_max: formData.benchPress,
+      deadlift_max: formData.deadlift,
+      squat_max: formData.squat,
       wingspan: formData.wingspan,
-      verticalJump: formData.verticalJump,
-      heartRate: formData.heartRate,
-      vo2Max: formData.vo2Max,
-      dominantHand: formData.dominantHand,
-      eyeColor: formData.eyeColor,
-      hairColor: formData.hairColor,
+      vertical_jump_height: formData.verticalJump,
+      resting_heart_rate: formData.heartRate,
+      vo2_max: formData.vo2Max,
+      dominant_hand: formData.dominantHand,
+      eye_color: formData.eyeColor,
+      hair_color: formData.hairColor,
     };
 
     try {

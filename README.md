@@ -18,6 +18,7 @@ City of Residence
 Ethnicity/Race
 Marital Status
 Number of Children
+can drive
 
 ### Education & Career
 Highest Educational Degree
