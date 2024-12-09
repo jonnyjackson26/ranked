@@ -18,7 +18,6 @@ City of Residence
 Ethnicity/Race
 Marital Status
 Number of Children
-can drive
 
 ### Education & Career
 Highest Educational Degree
@@ -77,4 +76,26 @@ Pets Owned (type and number)
 number of countries visited
 have you visited all 50 states
 
-#### in the future make it so u can link social profiles
+### can you ...
+Solve a Rubik's Cube?
+Dunk a basketball?
+Do a backflip?
+Juggle three balls?
+Ride a unicycle?
+Do a cartwheel?
+Swim
+Do 10 push-ups?
+Do a muscle-up?
+Touch your toes?
+Spin a basketball on your finger?
+drive a car
+
+
+### have you ever...
+Skydived?
+Broken a bone?
+Traveled to another continent?
+Ridden a horse?
+Gotten a tattoo?
+ran a marathon
+Been in a play or musical?

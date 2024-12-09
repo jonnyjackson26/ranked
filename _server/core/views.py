@@ -115,3 +115,33 @@ def get_users_stats(request):
     ]
     return JsonResponse(dummy, safe=False)
 
+
+
+
+@login_required
+@csrf_exempt
+def i_can(request):
+    try:
+        # Fetch the physical attributes of the logged-in user
+        attributes = request.user.physical_attributes
+    except PhysicalAttributes.DoesNotExist:
+        return JsonResponse({'error': 'Physical attributes not found'}, status=404)
+
+    # Prepare data to return as JSON
+    data = {
+        'height': attributes.height,
+        'weight': attributes.weight,
+        'fastest_40_yard_dash': attributes.fastest_40_yard_dash,
+        'bench_press_max': attributes.bench_press_max,
+        'deadlift_max': attributes.deadlift_max,
+        'squat_max': attributes.squat_max,
+        'wingspan': attributes.wingspan,
+        'vertical_jump_height': attributes.vertical_jump_height,
+        'resting_heart_rate': attributes.resting_heart_rate,
+        'vo2_max': attributes.vo2_max,
+        'dominant_hand': attributes.dominant_hand,
+        'eye_color': attributes.eye_color,
+        'hair_color': attributes.hair_color,
+    }
+
+    return JsonResponse(data)

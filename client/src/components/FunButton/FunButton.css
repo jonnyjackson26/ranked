@@ -1,0 +1,46 @@
+.see-how-i-rank-button {
+    background: linear-gradient(45deg, #ff6f91, #ff9671, #ffc75f);
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+  }
+  
+  .see-how-i-rank-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 300%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: skewX(-45deg);
+    transition: left 0.5s ease;
+  }
+  
+  .see-how-i-rank-button:hover::before {
+    left: 100%;
+  }
+  
+  .see-how-i-rank-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
+  }
+  
+  .see-how-i-rank-button:active {
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .see-how-i-rank-button:focus {
+    outline: none;
+  }
+  
