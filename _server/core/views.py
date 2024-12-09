@@ -97,3 +97,19 @@ def get_users_physical_attributes(request):
     return JsonResponse(data)
 
 
+@login_required
+def get_users_stats(request):
+    dummy = [
+    {
+        "title": "Bench Press Max",
+        "description": "Congrats! You're in the 90th percentile for your bench press max!",
+        "shareMessage": "I'm in the 90th percentile for my bench press max! Check out my amazing stats!"
+    },
+    {
+        "title": "Height",
+        "description": "You're the tallest female with blue eyes and brown hair!",
+        "shareMessage": "I'm the tallest female with blue eyes and brown hair! Celebrate my unique stats!"
+    }
+    ]
+    return JsonResponse(dummy, safe=False)
+

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import Home from "./pages/Home/Home";
 import { createHashRouter, RouterProvider } from 'react-router-dom'
 import ProfilePage from './pages/ProfilePage/ProfilePage';
+import StatsPage from './pages/StatsPage/StatsPage';
 
 
 const router = createHashRouter([
@@ -13,6 +14,10 @@ const router = createHashRouter([
   {
     path: "/profile",
     element: <ProfilePage />,
+  },
+  {
+    path: "/stats",
+    element: <StatsPage />,
   },
 ])
 
