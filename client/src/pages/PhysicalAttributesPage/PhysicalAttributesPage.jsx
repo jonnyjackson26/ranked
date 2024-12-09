@@ -14,9 +14,9 @@ function PhysicalAttributesPage() {
     verticalJump: "",
     heartRate: "",
     vo2Max: "",
-    dominantHand: "right",
-    eyeColor: "brown",
-    hairColor: "black",
+    dominantHand: "no-selection",
+    eyeColor: "no-selection",
+    hairColor: "no-selection",
   });
 
   const handleChange = (e) => {
@@ -179,6 +179,7 @@ function PhysicalAttributesPage() {
             value={formData.dominantHand}
             onChange={handleChange}
           >
+            <option value="no-selection">See options</option>
             <option value="right">Right</option>
             <option value="left">Left</option>
             <option value="ambidextrous">Ambidextrous</option>
@@ -191,6 +192,7 @@ function PhysicalAttributesPage() {
             value={formData.eyeColor}
             onChange={handleChange}
           >
+            <option value="no-selection">See options</option>
             <option value="brown">Brown</option>
             <option value="blue">Blue</option>
             <option value="green">Green</option>
@@ -206,6 +208,7 @@ function PhysicalAttributesPage() {
             value={formData.hairColor}
             onChange={handleChange}
           >
+            <option value="no-selection">See options</option>
             <option value="black">Black</option>
             <option value="brown">Brown</option>
             <option value="blonde">Blonde</option>

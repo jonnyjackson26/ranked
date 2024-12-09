@@ -27,46 +27,48 @@ def index(req):
 
 
 from .models import PhysicalAttributes
-@csrf_exempt
 @login_required
+@csrf_exempt
 def save_physical_attributes(request):
     if request.method == "POST":
         try:
-            # Parse JSON data from request body
             data = json.loads(request.body)
         except json.JSONDecodeError:
             return JsonResponse({'error': 'Invalid JSON format'}, status=400)
 
         user = request.user
-        print(data)  # Check incoming data
 
-        # Check if the user already has physical attributes
         try:
             attributes = user.physical_attributes
         except PhysicalAttributes.DoesNotExist:
             attributes = PhysicalAttributes(user=user)
 
-        # Update or create attributes
-        attributes.height = int(data.get('height', 0))
-        attributes.weight = int(data.get('weight', 0))
-        attributes.fastest_40_yard_dash = float(data.get('fastest_40_yard_dash', 0))
-        attributes.bench_press_max = int(data.get('bench_press_max', 0))
-        attributes.deadlift_max = int(data.get('deadlift_max', 0))
-        attributes.squat_max = int(data.get('squat_max', 0))
-        attributes.wingspan = int(data.get('wingspan', 0))
-        attributes.vertical_jump_height = float(data.get('vertical_jump_height', 0))
-        attributes.resting_heart_rate = int(data.get('resting_heart_rate', 0))
-        attributes.vo2_max = data.get('vo2_max')
-        attributes.dominant_hand = str(data.get('dominant_hand'))
-        attributes.eye_color = str(data.get('eye_color'))
-        attributes.hair_color = str(data.get('hair_color'))
+        # Convert empty strings to None
+        for field, value in data.items():
+            if value == "":
+                data[field] = None
 
-        # Save the data
+        # Update or create attributes with safe defaults
+        attributes.height = data.get('height') or attributes.height
+        attributes.weight = data.get('weight') or attributes.weight
+        attributes.fastest_40_yard_dash = data.get('fastest_40_yard_dash') or attributes.fastest_40_yard_dash
+        attributes.bench_press_max = data.get('bench_press_max') or attributes.bench_press_max
+        attributes.deadlift_max = data.get('deadlift_max') or attributes.deadlift_max
+        attributes.squat_max = data.get('squat_max') or attributes.squat_max
+        attributes.wingspan = data.get('wingspan') or attributes.wingspan
+        attributes.vertical_jump_height = data.get('vertical_jump_height') or attributes.vertical_jump_height
+        attributes.resting_heart_rate = data.get('resting_heart_rate') or attributes.resting_heart_rate
+        attributes.vo2_max = data.get('vo2_max') or attributes.vo2_max
+        attributes.dominant_hand = data.get('dominant_hand') or attributes.dominant_hand
+        attributes.eye_color = data.get('eye_color') or attributes.eye_color
+        attributes.hair_color = data.get('hair_color') or attributes.hair_color
+
         attributes.save()
 
         return JsonResponse({'success': True, 'message': 'Physical attributes saved!'})
 
     return JsonResponse({'error': 'Invalid request method'}, status=400)
+
 
 
 @login_required
