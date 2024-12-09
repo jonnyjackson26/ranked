@@ -52,3 +52,24 @@ class PhysicalAttributes(models.Model):
 
     def __str__(self):
         return f"Attributes of ID {self.id}"
+
+
+
+
+class ICan(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='ican')
+    solve_rubiks_cube = models.BooleanField(default=False)
+    dunk_basketball = models.BooleanField(default=False)
+    do_a_backflip = models.BooleanField(default=False)
+    juggle_three_balls = models.BooleanField(default=False)
+    ride_a_unicycle = models.BooleanField(default=False)
+    do_a_cartwheel = models.BooleanField(default=False)
+    swim = models.BooleanField(default=False)
+    do_10_push_ups = models.BooleanField(default=False)
+    do_a_muscle_up = models.BooleanField(default=False)
+    touch_your_toes = models.BooleanField(default=False)
+    spin_a_basketball_on_your_finger = models.BooleanField(default=False)
+    drive_a_car = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"Can You: {self.id}"

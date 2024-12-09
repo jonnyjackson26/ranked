@@ -117,31 +117,73 @@ def get_users_stats(request):
 
 
 
-
+from .models import ICan
 @login_required
 @csrf_exempt
-def i_can(request):
+def save_i_can(request):
+    if request.method == "POST":
+        try:
+            # Parse the JSON data from the request body
+            data = json.loads(request.body)
+            print("Received data:", data)
+        except json.JSONDecodeError:
+            return JsonResponse({'error': 'Invalid JSON format'}, status=400)
+
+        # Get the user or create a default instance
+        user = request.user  # Assuming user is logged in
+
+        # Check if there's already a ICan instance for the user
+        try:
+            can_you = ICan.objects.get(user=user)
+        except ICan.DoesNotExist:
+            can_you = ICan(user=user)
+
+        # Update fields dynamically based on incoming data
+        for field, value in data.items():
+            if hasattr(can_you, field):
+                setattr(can_you, field, value)
+
+        # Attempt to save the instance
+        try:
+            can_you.save()
+        except Exception as e:
+            return JsonResponse({'error': f"Error saving data: {str(e)}"}, status=500)
+
+        # Return a success response
+        return JsonResponse({'success': True, 'message': 'Data saved successfully!'})
+
+    return JsonResponse({'error': 'Invalid request method'}, status=400)
+
+
+
+
+@login_required
+def get_users_i_cans(request):
+    # Get the logged-in user
+    user = request.user
+
     try:
-        # Fetch the physical attributes of the logged-in user
-        attributes = request.user.physical_attributes
-    except PhysicalAttributes.DoesNotExist:
-        return JsonResponse({'error': 'Physical attributes not found'}, status=404)
+        # Get the user's ICan instance
+        can_you = ICan.objects.get(user=user)
 
-    # Prepare data to return as JSON
-    data = {
-        'height': attributes.height,
-        'weight': attributes.weight,
-        'fastest_40_yard_dash': attributes.fastest_40_yard_dash,
-        'bench_press_max': attributes.bench_press_max,
-        'deadlift_max': attributes.deadlift_max,
-        'squat_max': attributes.squat_max,
-        'wingspan': attributes.wingspan,
-        'vertical_jump_height': attributes.vertical_jump_height,
-        'resting_heart_rate': attributes.resting_heart_rate,
-        'vo2_max': attributes.vo2_max,
-        'dominant_hand': attributes.dominant_hand,
-        'eye_color': attributes.eye_color,
-        'hair_color': attributes.hair_color,
-    }
+        # Create a dictionary of the boolean fields
+        user_i_cans = {
+            "solve_rubiks_cube": can_you.solve_rubiks_cube,
+            "dunk_basketball": can_you.dunk_basketball,
+            "do_a_backflip": can_you.do_a_backflip,
+            "juggle_three_balls": can_you.juggle_three_balls,
+            "ride_a_unicycle": can_you.ride_a_unicycle,
+            "do_a_cartwheel": can_you.do_a_cartwheel,
+            "swim": can_you.swim,
+            "do_10_push_ups": can_you.do_10_push_ups,
+            "do_a_muscle_up": can_you.do_a_muscle_up,
+            "touch_your_toes": can_you.touch_your_toes,
+            "spin_a_basketball_on_your_finger": can_you.spin_a_basketball_on_your_finger,
+            "drive_a_car": can_you.drive_a_car,
+        }
 
-    return JsonResponse(data)
+        # Return the user's ICan data as JSON
+        return JsonResponse({'success': True, 'data': user_i_cans})
+
+    except ICan.DoesNotExist:
+        return JsonResponse({'error': 'User ICan instance not found'}, status=404)
